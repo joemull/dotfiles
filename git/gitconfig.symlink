@@ -38,3 +38,7 @@
 
 [init]
 	defaultBranch = main
+
+[user]
+	email = j.muller@bbk.ac.uk
+	name = Joseph Muller
