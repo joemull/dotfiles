@@ -1,4 +1,102 @@
+set nocompatible              " required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+
+" add all your plugins here (note older versions of Vundle
+" used Bundle instead of Plugin)
+Plugin 'vim-scripts/indentpython.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'vim-syntastic/syntastic'
+Plugin 'nvie/vim-flake8'
+Plugin 'jnurmine/Zenburn'
+Plugin 'altercation/vim-colors-solarized'
+
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'tpope/vim-fugitive'
+Plugin 'yegappan/grep'
+Plugin 'christoomey/vim-system-copy'
+Plugin 'iamcco/markdown-preview.nvim'
+" ...
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
+" Switching panes
+nnoremap ; <C-W>
+
+" PEP 8
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+"     \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
+
+au BufNewFile,BufRead *.js,*.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+
+au BufNewFile,BufRead *.html,*.xml
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set expandtab |
+
+" Flag unecessary whitespace
+" define BadWhitespace before using in a match
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufNewFile,BufRead *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/ |
+set list
+set listchars=tab:!·,trail:·
+
+" UTF-8 support
+set encoding=utf-8
+
+" Auto-completing
+let g:ycm_autoclose_preview_window_after_completion=1
+map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+" Syntax highlighting
+" see plugins vim-syntastic/syntastic and nvie/vim-flake8
+let python_highlight_all=1
 syntax on
+
+" Color schemes
+if has('gui_running')
+  set background=dark
+  colorscheme solarized
+else
+  colorscheme zenburn
+endif
+
+call togglebg#map("<F5>")
+
+
+" Line numbering
+set nu
+
+" Ctrl P settings
+" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --recurse-submodules']
+let g:ctrlp_working_path_mode = ''
+let g:ctrlp_max_files = 0
+
+" Copy and paste
+set clipboard=unnamedplus
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
