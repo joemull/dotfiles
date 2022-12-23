@@ -44,5 +44,4 @@ export DOTFILES=$HOME/.dotfiles
 $DOTFILES/os-defaults/set-defaults.sh
 
 # Install software
-echo "› $DOTFILES/script/install"
 $DOTFILES/script/install
