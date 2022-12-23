@@ -43,4 +43,6 @@ this script in `bin/`.
 
 These dotfiles were forked from [Zach Holman's dotfiles](https://github.com/holman/dotfiles).
 
+I got this working for Linux with the help of [Adrian Carriger](https://github.com/adriancarriger/dotfiles).
+
 The vim file is mostly based on [Real Python's vim explainer](https://realpython.com/vim-and-python-a-match-made-in-heaven/#vim-extensions).
