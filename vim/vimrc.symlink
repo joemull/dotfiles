@@ -32,6 +32,9 @@ Plugin 'iamcco/markdown-preview.nvim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+" Use jk not escape
+inoremap jk <ESC>
+let mapleader = ","
 
 " Switching panes
 nnoremap ; <C-W>
@@ -88,7 +91,14 @@ call togglebg#map("<F5>")
 
 
 " Line numbering
-set nu
+set number
+
+" No swap file
+set noswapfile
+
+" Searching
+set hlsearch
+set incsearch
 
 " Ctrl P settings
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --recurse-submodules']
