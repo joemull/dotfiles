@@ -27,6 +27,7 @@ Plugin 'christoomey/vim-system-copy'
 Plugin 'iamcco/markdown-preview.nvim'
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
+Plugin 'leafOfTree/vim-vue-plugin'
 " ...
 
 " All of your Plugins must be added before the following line
@@ -46,6 +47,7 @@ nnoremap ; <C-W>
 " Markdown display settings
 let g:vim_markdown_folding_disabled = 1
 let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'python', 'sh']
+let g:vim_markdown_fenced_languages = ['js=javascript']
 set conceallevel=2
 
 " PEP 8
