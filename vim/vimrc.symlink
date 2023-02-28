@@ -1,5 +1,11 @@
+set background=dark           " dark background first on opening
 set nocompatible              " required
 filetype off                  " required
+set title                     " show title of doc
+syntax on                     " turn on syntax highlighting
+
+" Don't require save before switching buffers
+set hidden
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -15,8 +21,9 @@ Plugin 'gmarik/Vundle.vim'
 " used Bundle instead of Plugin)
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'ycm-core/YouCompleteMe'
-Plugin 'vim-syntastic/syntastic'
-Plugin 'nvie/vim-flake8'
+
+Plugin 'dense-analysis/ale'
+
 Plugin 'sainnhe/everforest'
 
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -28,6 +35,13 @@ Plugin 'iamcco/markdown-preview.nvim'
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
 Plugin 'leafOfTree/vim-vue-plugin'
+Plugin 'preservim/vim-pencil'
+Plugin 'preservim/vim-lexical'
+Plugin 'preservim/vim-litecorrect'
+Plugin 'kana/vim-textobj-user'
+Plugin 'preservim/vim-textobj-quote'
+Plugin 'preservim/vim-textobj-sentence'
+Plugin 'junegunn/goyo.vim'
 " ...
 
 " All of your Plugins must be added before the following line
@@ -36,6 +50,17 @@ filetype plugin indent on    " required
 
 " Finish installation of plugins
 call mkdp#util#install()
+
+" Prose-related plugins
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,mkd call pencil#init()
+                            \ | call lexical#init()
+                            \ | call litecorrect#init()
+                            \ | call textobj#quote#init()
+                            \ | call textobj#sentence#init()
+augroup END
+
 
 " Use jk not escape
 inoremap jk <ESC>
@@ -50,31 +75,27 @@ let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'python', 'sh']
 let g:vim_markdown_fenced_languages = ['js=javascript']
 set conceallevel=2
 
-" PEP 8
-au BufNewFile,BufRead *.py
+" Indentation
+au BufNewFile,BufRead *.py,*.html,*.xml
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
-"     \ set textwidth=79 |
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
 
-au BufNewFile,BufRead *.js,*.css
+au BufNewFile,BufRead *.js,*.css,*.scss,*.json
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
-
-au BufNewFile,BufRead *.html,*.xml
-    \ set tabstop=4 |
-    \ set softtabstop=4 |
-    \ set shiftwidth=4 |
     \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
 
 " Flag unecessary whitespace
 " define BadWhitespace before using in a match
 highlight BadWhitespace ctermbg=red guibg=darkred
-au BufNewFile,BufRead *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/ |
+au BufNewFile,BufRead *.py,*.js,*.css,*.scss,*.json,*.html,*.xml match BadWhitespace /\s\+$/ |
 set list
 set listchars=tab:!·,trail:·
 
@@ -85,10 +106,10 @@ set encoding=utf-8
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-" Syntax highlighting
-" see plugins vim-syntastic/syntastic and nvie/vim-flake8
-let python_highlight_all=1
-syntax on
+" ALE
+
+let b:ale_linters = {'python': ['flake8'], 'javascript': ['eslint'], 'scss': ['stylelint'], 'markdown': ['markdownlint']}
+let g:ale_markdown_markdownlint_executable = 'markdownlint-cli2'
 
 " Color schemes
 colorscheme everforest
@@ -114,3 +135,7 @@ set clipboard=unnamedplus
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
+
+" Cursor
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
