@@ -1,4 +1,4 @@
-if test $(which pip)
+if test $(which apt-get)
 then
-  pip install flake8
+  sudo apt-get install flake8
 fi

@@ -108,7 +108,14 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " ALE
 
-let b:ale_linters = {'python': ['flake8'], 'javascript': ['eslint'], 'scss': ['stylelint'], 'markdown': ['markdownlint'], 'html': ['htmlhint', 'tidy']}
+let b:ale_linters = {
+\ 'python': ['flake8'],
+\ 'scss': ['stylelint'],
+\ 'markdown': ['markdownlint'],
+\ 'html': ['htmlhint', 'tidy'],
+\ 'javascript': ['standard'],
+\ }
+
 let g:ale_markdown_markdownlint_executable = 'markdownlint-cli2'
 
 " Color schemes
