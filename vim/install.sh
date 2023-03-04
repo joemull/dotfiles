@@ -5,4 +5,7 @@ if [ ! -d ~/.vim ]; then
   fi
 fi
 
+sudo apt-get install ripgrep
+sudo apt-get install fzf
+
 exit 0
