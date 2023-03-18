@@ -26,7 +26,6 @@ Plugin 'dense-analysis/ale'
 
 Plugin 'sainnhe/everforest'
 
-Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'tpope/vim-fugitive'
 
 Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -66,6 +65,8 @@ augroup END
 
 " Use jk not escape
 inoremap jk <ESC>
+
+" Comma as leader
 let mapleader = ","
 
 " Switching panes
@@ -118,6 +119,8 @@ let b:ale_linters = {
 \ 'javascript': ['standard'],
 \ }
 
+let g:ale_use_global_executables = 1
+let g:ale_css_stylelint_options = '--config ~/.stylelintrc.json'
 let g:ale_markdown_markdownlint_executable = 'markdownlint-cli2'
 
 " Color schemes
@@ -125,7 +128,7 @@ colorscheme everforest
 
 
 " Line numbering
-set number
+set number relativenumber
 
 " No swap file
 set noswapfile
