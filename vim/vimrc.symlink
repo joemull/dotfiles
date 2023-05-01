@@ -36,6 +36,9 @@ Plugin 'iamcco/markdown-preview.nvim'
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
 Plugin 'leafOfTree/vim-vue-plugin'
+
+Plugin 'dhruvasagar/vim-table-mode'
+" Plugin 'jalvesaq/zotcite'
 Plugin 'preservim/vim-pencil'
 Plugin 'preservim/vim-lexical'
 Plugin 'preservim/vim-litecorrect'
@@ -61,7 +64,6 @@ augroup pencil
                             \ | call textobj#quote#init()
                             \ | call textobj#sentence#init()
 augroup END
-
 
 " Use jk not escape
 inoremap jk <ESC>
@@ -136,6 +138,7 @@ set noswapfile
 " Searching
 set hlsearch
 set incsearch
+nnoremap <esc><esc> :noh<return><esc>
 
 " Ctrl P settings
 " let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --recurse-submodules']
