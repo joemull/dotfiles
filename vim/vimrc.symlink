@@ -35,7 +35,6 @@ Plugin 'christoomey/vim-system-copy'
 Plugin 'iamcco/markdown-preview.nvim'
 Plugin 'godlygeek/tabular'
 Plugin 'preservim/vim-markdown'
-Plugin 'leafOfTree/vim-vue-plugin'
 
 Plugin 'dhruvasagar/vim-table-mode'
 " Plugin 'jalvesaq/zotcite'
@@ -81,7 +80,7 @@ let g:vim_markdown_fenced_languages = ['js=javascript']
 set conceallevel=2
 
 " Indentation
-au BufNewFile,BufRead *.py,*.html,*.xml
+au BufNewFile,BufRead *.py
     \ set tabstop=4 |
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
@@ -89,7 +88,7 @@ au BufNewFile,BufRead *.py,*.html,*.xml
     \ set autoindent |
     \ set fileformat=unix |
 
-au BufNewFile,BufRead *.js,*.css,*.scss,*.json
+au BufNewFile,BufRead *.html,*.xml,*.js,*.css,*.scss,*.json,*.svg
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
