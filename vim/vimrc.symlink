@@ -7,52 +7,51 @@ syntax on                     " turn on syntax highlighting
 " Don't require save before switching buffers
 set hidden
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Plugins using vim plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+" Plug 'vim-scripts/indentpython.vim'
+" Plug 'ycm-core/YouCompleteMe'
 
-" add all your plugins here (note older versions of Vundle
-" used Bundle instead of Plugin)
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'ycm-core/YouCompleteMe'
+" Plug 'dense-analysis/ale'
 
-Plugin 'dense-analysis/ale'
+if has('nvim')
+  Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-pyright coc-tsserver coc-json coc-html coc-css @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar'}
+endif
 
-Plugin 'sainnhe/everforest'
+Plug 'sainnhe/everforest'
 
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 
-Plugin 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
-Plugin 'christoomey/vim-system-copy'
-Plugin 'iamcco/markdown-preview.nvim'
-Plugin 'godlygeek/tabular'
-Plugin 'preservim/vim-markdown'
+Plug 'christoomey/vim-system-copy'
+Plug 'iamcco/markdown-preview.nvim'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
-Plugin 'dhruvasagar/vim-table-mode'
-" Plugin 'jalvesaq/zotcite'
-Plugin 'preservim/vim-pencil'
-Plugin 'preservim/vim-lexical'
-Plugin 'preservim/vim-litecorrect'
-Plugin 'kana/vim-textobj-user'
-Plugin 'preservim/vim-textobj-quote'
-Plugin 'preservim/vim-textobj-sentence'
-Plugin 'junegunn/goyo.vim'
+Plug 'dhruvasagar/vim-table-mode'
+" Plug 'jalvesaq/zotcite'
+Plug 'preservim/vim-pencil'
+Plug 'preservim/vim-lexical'
+Plug 'preservim/vim-litecorrect'
+Plug 'kana/vim-textobj-user'
+Plug 'preservim/vim-textobj-quote'
+Plug 'preservim/vim-textobj-sentence'
+Plug 'junegunn/goyo.vim'
 " ...
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
 
 " Finish installation of plugins
-call mkdp#util#install()
+" call mkdp#util#install()
 
 " Prose-related plugins
 augroup pencil
@@ -88,7 +87,7 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix |
 
-au BufNewFile,BufRead *.html,*.xml,*.js,*.css,*.scss,*.json,*.svg
+au BufNewFile,BufRead *.html,*.xml,*.js,*.css,*.scss,*.json,*.svg,*.sh
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
