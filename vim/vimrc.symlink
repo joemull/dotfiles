@@ -19,9 +19,9 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 " Plug 'vim-scripts/indentpython.vim'
 " Plug 'ycm-core/YouCompleteMe'
 
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-pyright coc-tsserver coc-json coc-html coc-htmldjango coc-css @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar coc-svg'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-pyright coc-tsserver coc-json coc-htmldjango coc-css @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar coc-svg'}
 
 Plug 'sainnhe/everforest'
 
@@ -35,9 +35,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 Plug 'christoomey/vim-system-copy'
-Plug 'iamcco/markdown-preview.nvim'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 
 Plug 'dhruvasagar/vim-table-mode'
 " Plug 'jalvesaq/zotcite'
@@ -60,6 +60,11 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set signcolumn=yes
+
+let g:coc_config_home = '/.dotfiles/vim/'
+
+" Turn off COC
+" let g:coc_start_at_startup=0
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice
@@ -112,7 +117,7 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix |
 
-au BufNewFile,BufRead *.html,*.xml,*.js,*.css,*.scss,*.json,*.svg,*.sh
+au BufNewFile,BufRead *.html,*.xml,*.js,*.ts,*.css,*.scss,*.json,*.svg,*.sh,*.md
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -136,17 +141,16 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " ALE
 
-let b:ale_linters = {
-\ 'python': ['flake8'],
-\ 'scss': ['stylelint'],
-\ 'markdown': ['markdownlint'],
-\ 'html': ['htmlhint', 'tidy'],
-\ 'javascript': ['standard'],
-\ }
+" let b:ale_linters = {
+" \ 'python': ['flake8'],
+" \ 'scss': ['stylelint'],
+" \ 'html': ['htmlhint', 'tidy'],
+" \ 'javascript': ['standard'],
+" \ }
 
-let g:ale_use_global_executables = 1
-let g:ale_css_stylelint_options = '--config ~/.stylelintrc.json'
-let g:ale_markdown_markdownlint_executable = 'markdownlint-cli2'
+" let g:ale_use_global_executables = 1
+" let g:ale_css_stylelint_options = '--config ~/.stylelintrc.json'
+" let g:ale_markdown_markdownlint_executable = 'markdownlint-cli2'
 
 " Color schemes
 colorscheme everforest
@@ -201,7 +205,7 @@ set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 nnoremap <silent> <Leader>d :RgDeep<CR>
 command! -bang -nargs=* RgDeep
 \ call fzf#vim#grep(
-\   "rg --no-ignore --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
+\   "rg --hidden --no-ignore --column --line-number --no-heading --color=always --smart-case ".shellescape(<q-args>),
 \   1,
 \   <bang>0
 \ )
