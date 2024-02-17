@@ -40,8 +40,5 @@ done
 
 export DOTFILES=$HOME/.dotfiles
 
-# Set OS defaults
-$DOTFILES/os-defaults/set-defaults.sh
-
 # Install software
 $DOTFILES/script/install
