@@ -13,10 +13,10 @@
         diff = auto
         status = auto
         branch = auto
-        ui = true
+        ui = auto
 [core]
         excludesfile = ~/.gitignore
-        editor = vim
+        editor = nvim
 [apply]
         whitespace = nowarn
 [mergetool]
@@ -32,13 +32,11 @@
         # Setting to git 2.0 default to suppress warning message
         default = simple
 [credential]
-	helper = osxkeychain
-[diff "spaceman-diff"]
-  command = /opt/homebrew/bin/spaceman-diff
+        helper = osxkeychain
 
 [init]
-	defaultBranch = main
+        defaultBranch = main
 
 [user]
-	email = j.muller@bbk.ac.uk
-	name = Joseph Muller
+        email = j.muller@bbk.ac.uk
+        name = Joseph Muller
