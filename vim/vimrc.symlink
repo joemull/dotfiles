@@ -21,7 +21,7 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
 " Plug 'dense-analysis/ale'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-pyright coc-tsserver coc-json coc-htmldjango coc-css @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar coc-svg'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-pyright coc-tsserver coc-json coc-htmldjango coc-html coc-css @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar coc-svg'}
 
 Plug 'sainnhe/everforest'
 
@@ -48,6 +48,8 @@ Plug 'kana/vim-textobj-user'
 Plug 'preservim/vim-textobj-quote'
 Plug 'preservim/vim-textobj-sentence'
 Plug 'junegunn/goyo.vim'
+Plug 'jonsmithers/vim-html-template-literals'
+Plug 'pangloss/vim-javascript'
 " ...
 
 call plug#end()
@@ -102,6 +104,9 @@ let mapleader = ","
 " Switching panes
 nnoremap ; <C-W>
 
+" CSS syntax highlighting in tagged template literals
+" g:htl_all_templates = 1
+
 " Markdown display settings
 let g:vim_markdown_folding_disabled = 1
 let g:markdown_fenced_languages = ['html', 'css', 'javascript', 'python', 'sh']
@@ -122,7 +127,7 @@ au BufNewFile,BufRead *.html,*.xml,*.js,*.ts,*.css,*.scss,*.json,*.svg,*.sh,*.md
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
     \ set expandtab |
-    \ set autoindent |
+    " \ set autoindent |
     \ set fileformat=unix |
 
 " Flag unecessary whitespace
