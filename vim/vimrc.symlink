@@ -8,18 +8,15 @@ syntax on                     " turn on syntax highlighting
 set hidden
 
 " Plugins using vim plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
 " Plug 'vim-scripts/indentpython.vim'
-" Plug 'ycm-core/YouCompleteMe'
-
-" Plug 'dense-analysis/ale'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-pyright coc-tsserver coc-json coc-htmldjango coc-html coc-css @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar coc-svg'}
 
@@ -140,26 +137,8 @@ set listchars=tab:!·,trail:·
 " UTF-8 support
 set encoding=utf-8
 
-" Auto-completing
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-" ALE
-
-" let b:ale_linters = {
-" \ 'python': ['flake8'],
-" \ 'scss': ['stylelint'],
-" \ 'html': ['htmlhint', 'tidy'],
-" \ 'javascript': ['standard'],
-" \ }
-
-" let g:ale_use_global_executables = 1
-" let g:ale_css_stylelint_options = '--config ~/.stylelintrc.json'
-" let g:ale_markdown_markdownlint_executable = 'markdownlint-cli2'
-
 " Color schemes
 colorscheme everforest
-
 
 " Line numbering
 set number relativenumber
@@ -171,11 +150,6 @@ set noswapfile
 set hlsearch
 set incsearch
 nnoremap <esc><esc> :noh<return><esc>
-
-" Ctrl P settings
-" let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files --recurse-submodules']
-let g:ctrlp_working_path_mode = ''
-let g:ctrlp_max_files = 0
 
 " Copy and paste
 set clipboard=unnamedplus

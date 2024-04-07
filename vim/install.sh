@@ -1,3 +1,5 @@
+sudo apt-get install curl
+
 if [ ! -d ~/.vim ]; then
   sudo apt-get install vim
   if [ ! -f ~/.vim/autoload/plug.vim ]; then
