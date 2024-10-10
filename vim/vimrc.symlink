@@ -7,6 +7,15 @@ syntax on                     " turn on syntax highlighting
 " Don't require save before switching buffers
 set hidden
 
+" Use jk not escape
+inoremap jk <ESC>
+
+" Comma as leader
+let mapleader = ","
+
+" Switching panes
+nnoremap ; <C-W>
+
 " Plugins using vim plug
 " Install vim-plug if not found
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -45,8 +54,9 @@ Plug 'kana/vim-textobj-user'
 Plug 'preservim/vim-textobj-quote'
 Plug 'preservim/vim-textobj-sentence'
 Plug 'junegunn/goyo.vim'
-Plug 'jonsmithers/vim-html-template-literals'
 Plug 'pangloss/vim-javascript'
+Plug 'mracos/mermaid.vim'
+Plug 'lepture/vim-jinja'
 " ...
 
 call plug#end()
@@ -83,26 +93,26 @@ function! CheckBackspace() abort
 endfunction
 
 " Prose-related plugins
+" let g:pencil#wrapModeDefault = 'soft'
+" function SetPencilOptions()
+"   call pencil#init()
+"   setlocal colorcolumn=80
+" endfunction
+
+" Press K before insertion commands like i, o, a to disable autoformat for
+" that insert
+let g:pencil#map#suspend_af = 'K'
+
+setlocal textwidth=80
+
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType markdown,mkd,text,rst call pencil#init()
                             \ | call lexical#init()
                             \ | call litecorrect#init()
                             \ | call textobj#quote#init()
                             \ | call textobj#sentence#init()
 augroup END
-
-" Use jk not escape
-inoremap jk <ESC>
-
-" Comma as leader
-let mapleader = ","
-
-" Switching panes
-nnoremap ; <C-W>
-
-" CSS syntax highlighting in tagged template literals
-" g:htl_all_templates = 1
 
 " Markdown display settings
 let g:vim_markdown_folding_disabled = 1
@@ -119,7 +129,7 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix |
 
-au BufNewFile,BufRead *.html,*.xml,*.js,*.ts,*.css,*.scss,*.json,*.svg,*.sh,*.md
+au BufNewFile,BufRead *.html,*.xml,*.js,*.ts,*.css,*.scss,*.json,*.svg,*.sh,*.md,*.jinja
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
