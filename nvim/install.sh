@@ -1,4 +1,8 @@
-sudo apt-get install neovim
+if test "$(uname)" = "Darwin"; then
+  brew install neovim
+elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
+  sudo apt-get install neovim
+fi
 
 mkdir -p ~/.config/nvim
 if [ ! -f ~/.config/nvim/init.vim ]
@@ -10,8 +14,5 @@ if [ ! -f ~/.config/nvim/coc-settings.json ]
 then
   ln -s ~/.dotfiles/nvim/coc-settings.json ~/.config/nvim/coc-settings.json
 fi
-
-sudo apt-get install ripgrep
-sudo apt-get install fzf
 
 exit 0

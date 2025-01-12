@@ -163,6 +163,10 @@ nnoremap <esc><esc> :noh<return><esc>
 
 " Copy and paste
 set clipboard=unnamedplus
+let s:uname = system("uname")
+if s:uname == "Darwin\n"
+  set clipboard=unnamed
+endif
 
 " Wrap gitcommit file types at the appropriate length
 filetype indent plugin on
