@@ -57,12 +57,17 @@ Plug 'junegunn/goyo.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'mracos/mermaid.vim'
 Plug 'lepture/vim-jinja'
+" Plug 'vim-pandoc/vim-pandoc'
+" Plug 'vim-pandoc/vim-pandoc-syntax'
 " ...
 
 call plug#end()
 
 " Finish installation of plugins
 " call mkdp#util#install()
+"
+" vim-pandoc settings
+let g:pandoc#modules#disabled = ["folding"]
 
 " COC
 set nobackup

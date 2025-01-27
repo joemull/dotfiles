@@ -2,10 +2,10 @@ if test "$(uname)" = "Darwin"; then
   brew update
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
   sudo apt update
-  sudo apt install build-essential libssl-dev zlib1g-dev \
+  sudo apt -y install build-essential libssl-dev zlib1g-dev \
   libbz2-dev libreadline-dev libsqlite3-dev curl \
   libncursesw5-dev xz-utils tk-dev libxml2-dev libxmlsec1-dev libffi-dev liblzma-dev
-  sudo apt-get install python3-pip
+  sudo apt-get -y install python3-pip
 fi
 
 # Set up pyenv to get python 3.10
@@ -18,3 +18,5 @@ if test ! $(which python3.10)
 then
   pyenv install 3.10
 fi
+
+exit 0

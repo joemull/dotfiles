@@ -1,7 +1,7 @@
 if test "$(uname)" = "Darwin"; then
   brew install neovim
 elif test "$(expr substr $(uname -s) 1 5)" = "Linux"; then
-  sudo apt-get install neovim
+  sudo apt-get -y install neovim
 fi
 
 mkdir -p ~/.config/nvim
