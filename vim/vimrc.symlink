@@ -1,4 +1,5 @@
 set background=dark           " dark background first on opening
+" set background=light          " light background for bright places in the world
 set nocompatible              " required
 filetype off                  " required
 set title                     " show title of doc
@@ -27,7 +28,8 @@ call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
 " Plug 'vim-scripts/indentpython.vim'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-pyright coc-prettier coc-tsserver coc-json coc-htmldjango coc-html coc-css @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar coc-svg'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-prettier coc-tsserver coc-json coc-htmldjango coc-html coc-css coc-svg @yaegassy/coc-volar'}
+" coc-pyright @yaegassy/coc-tailwindcss3 @yaegassy/coc-volar
 
 Plug 'sainnhe/everforest'
 
@@ -44,6 +46,8 @@ Plug 'christoomey/vim-system-copy'
 Plug 'godlygeek/tabular'
 Plug 'preservim/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+
+Plug 'KabbAmine/vCoolor.vim'
 
 Plug 'dhruvasagar/vim-table-mode'
 " Plug 'jalvesaq/zotcite'
@@ -96,7 +100,7 @@ function! CheckBackspace() abort
 endfunction
 
 " Prose-related plugins
-" let g:pencil#wrapModeDefault = 'soft'
+let g:pencil#wrapModeDefault = 'soft'
 " function SetPencilOptions()
 "   call pencil#init()
 "   setlocal colorcolumn=80
@@ -132,7 +136,7 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix |
 
-au BufNewFile,BufRead *.html,*.xml,*.js,*.ts,*.css,*.scss,*.json,*.svg,*.sh,*.md,*.jinja
+au BufNewFile,BufRead *.html,*.xml,*.xsl,*.js,*.ts,*.css,*.scss,*.json,*.svg,*.sh,*.md,*.jinja
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -151,6 +155,16 @@ set listchars=tab:!·,trail:·
 set encoding=utf-8
 
 " Color schemes
+" Important!!
+" if has('termguicolors')
+"   set termguicolors
+" endif
+
+" let g:everforest_background = 'hard'
+
+" For better performance
+let g:everforest_better_performance = 1
+
 colorscheme everforest
 
 " Line numbering
